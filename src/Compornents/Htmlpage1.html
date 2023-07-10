@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="" i1></h1>
+    <table id="i2" border="1" align="center"></table>
+    <script>
+      function show(res) {
+        console.log(res);
+        let cell = `<tr>
+            <th>Product Title</th>
+            <th>Product Badge</th>
+            <th>Product Image</th>
+          </tr>`;
+
+        for (let x of res) {
+          console.log(x);
+          let image = x.product_image;
+          cell += `<tr>
+              <td>${x.product_title}</td>
+              <td>${x.product_badge}</td>
+              <td>
+                <img src= ${image} alt="img" style="height:70px""" />
+              </td>`;
+        }
+        document.getElementById("i2").innerHTML = cell;
+      }
+      fetch("https://mocki.io/v1/0934df88-6bf7-41fd-9e59-4fb7b8758093")
+        .then((res) => res.json())
+        .then((res) => show(res.data))
+        .catch((err) => console.log(err));
+    </script>
+  </body>
+</html>
